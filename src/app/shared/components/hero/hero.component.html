@@ -1,0 +1,17 @@
+<div class="relative flex-col flex lg:flex-row justify-center items-center my-10 gap-10">
+  <div class="text-gray-950 dark:text-malachite-200 w-1/2 h-full">
+    <p class="leading-relaxed text-left text-base md:text-lg lg:text-xl top-0">{{ atributesHero.text }}</p>
+  </div>
+  <div class="my-10 grid place-items-center gap-8 order-first">
+    <img
+      [src]="atributesHero.img.computer"
+      alt="Rick and morty"
+      class="object-cover hidden lg:block object-center w-5/6 rounded-xl animation shadow-lg shadow-malachite-500 dark:shadow-lg dark:shadow-blue-ribbon-600"
+    >
+    <img
+      [src]="atributesHero.img.movil"
+      alt="Rick and morty"
+      class="object-cover lg:hidden object-center w-3/6 h-auto rounded-xl animation shadow-lg shadow-malachite-500 dark:shadow-lg dark:shadow-blue-ribbon-600"
+    >
+  </div>
+</div>

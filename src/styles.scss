@@ -1,1 +1,264 @@
 /* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// @layer components {
+//   .gradient-dark {
+//     @apply p-4 rounded-lg bg-gradient-to-br from-transparent via-cyan-800 to-gray-800 shadow-xl shadow-slate-900
+//   }
+// }
+
+@layer utilities {
+
+  .card-gradiente {
+    backdrop-filter: blur(9px) saturate(198%);
+    -webkit-backdrop-filter: blur(9px) saturate(198%);
+    background-color: rgba(17, 25, 40, 0.48);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.125);
+  }
+}
+
+// FUNCIONES
+
+
+// Components
+@layer components {
+  .btn-custom-module {
+    @apply px-4 py-2 rounded shadow focus:shadow-md focus:outline-none transition-all duration-200 hover:scale-105
+  }
+
+  .btn-custom-primary {
+    @apply px-4 bg-sky-500 text-white py-2 rounded shadow focus:shadow-md focus:outline-none transition-all duration-200 hover:scale-105 hover:bg-sky-700
+  }
+
+  .btn-custom-danger {
+    @apply px-4 bg-red-400 text-white py-2 rounded shadow focus:shadow-md focus:outline-none transition-all duration-200 hover:scale-105 hover:bg-red-700
+  }
+
+  .btn-custom-black {
+    @apply px-4 bg-slate-800 text-white py-2 rounded shadow focus:shadow-md focus:outline-none transition-all duration-200 hover:scale-105 hover:bg-slate-700
+  }
+
+  .btn-custom-warning {
+    @apply px-4 bg-yellow-500 text-red-700 py-2 rounded shadow focus:shadow-md focus:outline-none transition-all duration-200 hover:scale-105 hover:bg-yellow-300 hover:text-red-400
+  }
+
+  .btn-custom-sucess {
+    @apply px-4 bg-lime-600 text-gray-100 py-2 rounded shadow focus:shadow-md focus:outline-none transition-all duration-200 hover:scale-105 hover:bg-lime-800 hover:text-white
+  }
+
+  // Outline
+  .outline-primary {
+    @apply bg-transparent p-2 hover:bg-blue-500 hover:text-white rounded border-2 border-blue-500 text-blue-500 ring-blue-300 focus:ring
+  }
+
+  .outline-secondary {
+    @apply bg-transparent p-2 hover:bg-gray-500 hover:text-white rounded border-2 border-gray-500 text-gray-500 ring-gray-300 focus:ring
+  }
+
+  .outline-succes {
+    @apply bg-transparent p-2 hover:bg-green-500 hover:text-white rounded border-2 border-green-500 text-green-500 ring-green-300 focus:ring
+  }
+
+  .outline-warning {
+    @apply bg-transparent p-2 hover:bg-yellow-500 hover:text-white rounded border-2 border-yellow-500 text-yellow-500 ring-yellow-300 focus:ring
+  }
+
+  .outline-danger {
+    @apply bg-transparent p-2 hover:bg-red-500 hover:text-white rounded border-2 border-red-500 text-red-500 ring-red-300 focus:ring
+  }
+
+  .outline-black {
+    @apply bg-transparent p-2 hover:bg-slate-500 hover:text-white border-2 rounded border-black text-black ring-slate-700 focus:ring
+  }
+
+
+  /* Degradado */
+  .gradient-primary {
+    @apply bg-gradient-to-r rounded p-2 from-blue-500 to-blue-700 hover:from-blue-700 hover:to-blue-500 ring-blue-300 focus:ring text-white
+  }
+
+  .gradient-secondary {
+    @apply bg-gradient-to-r rounded p-2 from-gray-500 to-gray-700 hover:from-gray-700 hover:to-gray-500 ring-gray-300 focus:ring text-white
+  }
+
+  .gradient-succes {
+    @apply bg-gradient-to-r rounded p-2 from-green-500 to-green-700 hover:from-green-700 hover:to-green-500 ring-green-300 focus:ring text-white
+  }
+
+  .gradient-warning {
+    @apply bg-gradient-to-r rounded p-2 from-yellow-500 to-yellow-700 hover:from-yellow-700 hover:to-yellow-500 ring-yellow-300 focus:ring text-white
+  }
+
+  .gradient-danger {
+    @apply bg-gradient-to-r rounded p-2 from-red-500 to-red-700 hover:from-red-700 hover:to-red-500 ring-red-300 focus:ring text-white
+  }
+
+  .gradient-black {
+    @apply bg-gradient-to-r rounded p-2 from-slate-500 to-slate-700 hover:from-slate-700 hover:to-slate-500 ring-slate-300 focus:ring text-white
+  }
+}
+
+
+// DropDown 🤖
+
+@layer components {
+  .dropdown {
+    @apply relative flex items-center justify-center p-0
+  }
+
+  .row {
+    @apply border-l p-2
+  }
+
+  .dropdown-body {
+    @apply absolute top-full hidden group-focus:block w-full shadow-md rounded bg-sky-600 h-auto
+  }
+
+  .dropdown-body .list {
+    @apply text-left border rounded
+  }
+
+  .dropdown-body .list .list-items {
+    @apply px-4 py-1 border-b hover:bg-sky-500
+  }
+
+}
+
+// CARDS ♣️
+@layer components {
+  .card-component {
+    @apply bg-gray-200 rounded-xl p-6 overflow-hidden text-black bg-gradient-to-t from-gray-100 to-slate-300 shadow shadow-slate-700
+  }
+
+  .card-component .card-title {
+    @apply text-4xl font-extrabold mb-2
+  }
+
+  .card-component .card-body {
+    @apply text-gray-800 leading-relaxed mb-6
+  }
+
+  .card-component .card-button {
+    @apply text-blue-500 px-4 py-3 bg-gray-300 rounded hover:bg-blue-500 hover:text-white transition no-underline
+  }
+
+  .card-component .card-link {
+    @apply text-blue-500 hover:text-blue-600 font-medium no-underline
+  }
+
+  .card-component .card-footer {
+    @apply border-t-2 border-gray-300 pt-6 flex items-center justify-between
+  }
+
+  .card-component .card-header {
+    @apply border-b border-gray-300 pb-4 mb-3 flex items-center justify-between
+  }
+
+  .card-component .card-img {
+    @apply w-full h-64 object-cover
+  }
+
+  .card-component .card-overlay {
+    @apply absolute top-0 left-0 w-full h-full z-10 bg-gradient-to-b from-transparent to-black
+  }
+
+
+}
+
+
+//  Galeria
+@layer components {
+  .galery-container {
+    @apply columns-1 sm:columns-2 md:columns-3 lg:columns-4 space-y-3 p-3
+  }
+
+  .galery-items {
+    @apply hover:scale-90 transition rounded overflow-hidden cursor-pointer
+  }
+
+}
+
+// HERO
+
+@layer components {
+  .hero {
+    @apply container mx-auto flex py-24 flex-col md:flex-row items-center
+  }
+
+  .hero-image {
+    @apply w-full mb-10 md:mb-0
+  }
+
+  .hero-body {
+    @apply md:w-11/12 md:p-5 flex flex-col md:text-left md:items-start items-center text-justify
+  }
+
+  .hero-title {
+    @apply text-4xl mb-4 font-medium dark:text-gray-900 text-sky-700
+  }
+}
+
+
+// Style Hamburger
+
+@layer components {
+  .hamburger div:first-child {
+    @apply rotate-45 translate-y-1.5
+  }
+
+  .hamburger div:last-child {
+    @apply -rotate-45 -translate-y-1 h-[2px]
+  }
+
+  .btn-download {
+    @apply bg-black p-10 pl-4 w-52 h-20 flex rounded items-center focus:outline-none dark:border-2 dark:border-cyan-700 dark:bg-transparent
+  }
+}
+
+
+// Animation img.
+@keyframes show {
+  from {
+    opacity: 0;
+    scale: 25%;
+  }
+
+  to {
+    opacity: 1;
+    scale: 100%;
+  }
+}
+
+// General Style
+.animation {
+  view-timeline-name: --image;
+  view-timeline-axis: block;
+  animation-timeline: --image;
+  animation-name: show;
+  animation-range: entry 25% cover 50%;
+  animation-fill-mode: both;
+}
+$malachite-50: #effef0;
+$malachite-100: #dafedb;
+$malachite-200: #b8fabb;
+$malachite-300: #80f587;
+$malachite-400: #3de648;
+$malachite-500: #19ce26;
+$malachite-600: #0eab19;
+$malachite-700: #0f8617;
+$malachite-800: #116a18;
+$malachite-900: #105717;
+$malachite-950: #033009;
+
+@layer components{
+
+  .titleMain {
+    @apply text-transparent bg-clip-text bg-gradient-to-br from-malachite-300 to-malachite-950 dark:from-blue-ribbon-200 dark:to-blue-ribbon-400
+  }
+}
+
+
+

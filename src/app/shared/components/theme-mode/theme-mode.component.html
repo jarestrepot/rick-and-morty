@@ -1,0 +1,18 @@
+
+<div
+  [class]="siteRenderNavbar ? 'px-1 sm:px-2 hidden lg:block': 'px-1 sm:px-2 block lg:hidden'"
+>
+  <button (click)="addDarkMode()">
+    <span
+      class="text-2xl md:text-3xl hover:cursor-pointer hover:shadow hover:scale-105 hover:shadow-malachite-700  hover:dark:shadow-white hover:rounded-full py-2 px-2"
+      *ngIf="!mode()">
+      🌑
+    </span>
+    <span
+      class="text-2xl md:text-3xl hover:cursor-pointer hover:scale-105 hover:shadow hover:shadow-malachite-400 hover:rounded-full py-2 px-2"
+      *ngIf="mode()">
+      ☀️
+    </span>
+  </button>
+</div>
+
