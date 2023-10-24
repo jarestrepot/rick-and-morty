@@ -36,7 +36,7 @@ export class SideBarComponent implements OnInit {
       {
         name: 'Chapters',
         router: ['/', 'chapters']
-      },
+      }
     ];
     if (window.localStorage.getItem('darkMode') === 'true'){
       this.state = true
@@ -55,6 +55,10 @@ export class SideBarComponent implements OnInit {
    */
   renderImage(event:Boolean){
     this.state = event;
+  }
+
+  scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 }
 

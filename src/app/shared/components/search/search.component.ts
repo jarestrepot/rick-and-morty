@@ -17,8 +17,6 @@ export class SearchComponent {
   src:string = '';
 
   callSearch(term: string) {
-    if(term.length > 3){
-      this.searchService.keypress.emit(term)
-    }
+    term.length >= 1 ? this.searchService.keypress.emit(term) : this.searchService.keypress.emit('false')
   }
 }
