@@ -50,8 +50,14 @@
   }
 
   .btn-custom-sucess {
-    @apply px-4 bg-lime-600 text-gray-100 py-2 rounded shadow focus:shadow-md focus:outline-none transition-all duration-200 hover:scale-105 hover:bg-lime-800 hover:text-white
+    @apply px-1 md:px-2 bg-lime-600 text-gray-100 py-2 rounded shadow focus:shadow-md focus:outline-none transition-all duration-200 hover:scale-105 hover:bg-lime-800 hover:text-white
   }
+
+  .btn-custom-malachite {
+    @apply px-4 bg-malachite-600 text-gray-100 py-2 rounded shadow focus:shadow-md focus:outline-none transition-all duration-200 hover:scale-105 hover:bg-malachite-800 hover:text-white
+  }
+
+
 
   // Outline
   .outline-primary {
@@ -64,6 +70,14 @@
 
   .outline-succes {
     @apply bg-transparent p-2 hover:bg-green-500 hover:text-white rounded border-2 border-green-500 text-green-500 ring-green-300 focus:ring
+  }
+
+  .outline-malachite {
+    @apply bg-transparent py-2 px-4 hover:bg-malachite-500 hover:text-white rounded border-2 border-malachite-500 text-malachite-500 ring-malachite-300 focus:ring
+  }
+
+  .outline-blue-ribbon {
+    @apply bg-transparent py-2 px-4 hover:bg-blue-ribbon-500 hover:text-white rounded border-2 border-blue-ribbon-500 text-blue-ribbon-500 ring-blue-ribbon-300 focus:ring
   }
 
   .outline-warning {
@@ -90,6 +104,13 @@
 
   .gradient-succes {
     @apply bg-gradient-to-r rounded p-2 from-green-500 to-green-700 hover:from-green-700 hover:to-green-500 ring-green-300 focus:ring text-white
+  }
+  .gradient-malachite{
+    @apply bg-gradient-to-r rounded p-2 from-malachite-500 to-malachite-600 hover:from-malachite-700 hover:to-malachite-500 ring-malachite-300 focus:ring text-white
+  }
+
+  .gadtient-blue-ribbon{
+    @apply bg-gradient-to-r rounded p-2 from-blue-ribbon-500 to-blue-ribbon-600 hover:from-blue-ribbon-700 hover:to-blue-ribbon-500 ring-blue-ribbon-300 focus:ring text-white
   }
 
   .gradient-warning {
@@ -259,8 +280,12 @@ $malachite-950: #033009;
 
 @layer components{
 
-  .titleMain {
+  .titleDegrant {
     @apply text-transparent bg-clip-text bg-gradient-to-br from-malachite-300 to-malachite-950 dark:from-blue-ribbon-200 dark:to-blue-ribbon-400
+  }
+
+  .text-stuffed{
+    @apply text-xl text-black dark:text-white tracking-widest font-mono px-4
   }
 }
 

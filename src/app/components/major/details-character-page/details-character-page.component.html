@@ -1,11 +1,24 @@
-<article id="section-details" class="mt-32">
-  <div
-    *ngIf="caharacter"
-    class=""
-  >
+<article id="section-details" class="mt-56 w-full mb-20 grid place-items-center">
+  <div class="w-2/3">
+    <h2 class="text-6xl text-center font-bold titleDegrant">Details character</h2>
 
-    <h2 class="text-9xl text-white">Details character ♥️♥️♥️♥️</h2>
-    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi, error, officiis impedit accusamus dolores neque ipsa commodi iure possimus rerum dignissimos similique molestias. Dolores laboriosam consequatur inventore similique asperiores nesciunt.</p>
-    <p>1. {{caharacter.name}}</p>
+    <div *ngIf="caharacter" class="grid grid-cols-2 gap-20 place-items-start mt-20 border rounded-lg border-malachite-500 dark:border-blue-ribbon-500">
+      <!-- Image -->
+      <div class="w-full flex justify-start">
+        <img src="{{caharacter.image}}" alt="{{caharacter.name}}"
+          class="w-full object-fill object-center rounded shadow-lg">
+      </div>
+      <!-- Information -->
+      <div class="w-full py-10 flex flex-col items-start justify-start gap-4">
+        <p class="titleDegrant text-2xl font-medium">{{caharacter.name}}</p>
+        <p class="text-stuffed">{{caharacter.status}}</p>
+        <p class="text-stuffed">{{caharacter.species}}</p>
+        <p class="text-stuffed">{{caharacter.gender}}</p>
+        <p class="text-stuffed">{{caharacter.type}}</p>
+        <p class="text-stuffed">{{caharacter.location.name}}</p>
+        <p class="text-stuffed">{{caharacter.origin.name}}</p>
+      </div>
+    </div>
   </div>
+
 </article>

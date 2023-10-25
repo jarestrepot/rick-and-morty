@@ -1,8 +1,8 @@
 import { Component, Input, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ApiRickAndMorty } from '@core/models/rickAnfMorty';
 import { CharactersService } from '../services/characters-controller.service';
 import { characterDetail } from '@core/models/detailCharacter';
+import { urlLocation, location } from '@core/models/urlLocation';
 
 @Component({
   selector: 'app-details-character-page',
@@ -16,6 +16,8 @@ export class DetailsCharacterPageComponent implements OnInit {
   caharacter?: characterDetail;
   @Input() id?: string;
   detailService = inject(CharactersService);
+  urlLocation?: location;
+  locationRelatedCharacter?: urlLocation;
 
   constructor() {
   }
@@ -26,6 +28,8 @@ export class DetailsCharacterPageComponent implements OnInit {
         {
           next: (response: characterDetail) => {
             this.caharacter = response;
+            const { location }= response;
+            this.urlLocation = location;
           },
           error: (error: Error) => {
             console.log(error);
@@ -34,6 +38,7 @@ export class DetailsCharacterPageComponent implements OnInit {
       );
     }
     // Redirect
+    console.log(this.caharacter?.location.url)
   }
 
 
