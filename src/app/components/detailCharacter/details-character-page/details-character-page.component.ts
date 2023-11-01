@@ -1,54 +1,62 @@
-import { Component, Input, OnInit, inject } from '@angular/core';
+import { Component, Input, OnInit, inject, SimpleChanges, OnChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CharactersService } from '../services/characters-controller.service';
+import { CharactersService } from '../../main/services/characters-controller.service';
 import { characterDetail } from '@core/models/detailCharacter';
 import { Result } from '@core/models/rickAnfMorty';
 import { multipleCharacters } from '@core/models/multipleCharacter';
 import { MultipleCharactersComponent } from '@shared/components/multiple-characters/multiple-characters.component';
 import { CharacterCardComponent } from '@shared/components/character-card/character-card.component';
+import {  Router } from '@angular/router';
 
 @Component({
   selector: 'app-details-character-page',
   standalone: true,
-  imports: [CommonModule, MultipleCharactersComponent, CharacterCardComponent ],
+  imports: [CommonModule, MultipleCharactersComponent, CharacterCardComponent],
   templateUrl: './details-character-page.component.html',
   styleUrls: ['./details-character-page.component.scss']
 })
-export class DetailsCharacterPageComponent implements OnInit {
-  // Parameters with Input
+export class DetailsCharacterPageComponent implements OnInit, OnChanges {
   caharacter?: characterDetail;
+  // Parameters as Input
   @Input() id?: string;
   detailService = inject(CharactersService);
+  routerLink = inject(Router);
 
   locationRelatedCharacter?: Result[] ;
 
-  constructor() {
-  }
   ngOnInit(): void {
-    this.characterDetails();
+    this.id ? this.characterDetails(this.id) : this.redirecMain()
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+      if(changes){
+        const { currentValue } = changes['id'];
+        this.characterDetails(currentValue)
+      }
   }
 
-  characterDetails(){
-    setTimeout(()=> {
-      if(this.id){
-        this.detailService.characterDetails$(this.id).subscribe(
+  characterDetails(idCharacter: string){
+    if (idCharacter){
+      this.detailService.characterDetails$(idCharacter).subscribe(
           {
             next: (response: characterDetail) => {
               this.caharacter = response;
               this.locationDetails(response.location.url)
             },
             error: (error: Error) => {
+              this.redirecMain()
               console.log(error);
             }
           }
         );
       }
-    }, 5000)
-    // Redirect
   }
 
+
+  redirecMain(){
+    this.routerLink.navigate(['/', 'major'])
+  }
   locationDetails(url:string){
-    this.detailService.locationCharacters$(url).subscribe(
+    this.detailService.locationCharacters$(url, String(this.caharacter?.id)).subscribe(
       {
         next: (response: multipleCharacters[]) => {
           this.locationRelatedCharacter = response.flat();

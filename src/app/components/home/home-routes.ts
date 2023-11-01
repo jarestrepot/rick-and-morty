@@ -11,9 +11,10 @@ export const homeRoutes: Routes = [
     path: 'chapters',
     loadChildren: () => import('../chapters/chapter-routes').then(routes => routes.chaptersRoutes),
   },
-  // {
-  //   path: 'details/:id',
-  // },
+  {
+    path: 'details/:id',
+    loadChildren: () => import('../detailCharacter/detailCharacter.routes').then(routes => routes.detailRoutes)
+  },
   {
     path:'**',
     redirectTo:'/major'

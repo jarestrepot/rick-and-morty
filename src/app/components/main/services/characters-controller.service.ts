@@ -25,22 +25,23 @@ export class CharactersService{
           response.info.next = this.URL;
         }
         return response
-      })
+      }),
+
     )
   }
   characterDetails$ = (characterId: string): Observable<characterDetail> => {
     return this.httpClient.get<characterDetail>(`${this.URL}/${characterId}`);
   }
 
-  locationCharacters$ = (url: string):Observable <multipleCharacters[]> => {
+  locationCharacters$ = (url: string, id: string | undefined):Observable <multipleCharacters[]> => {
     return this.httpClient.get < urlLocation >(url)
       .pipe(
         switchMap(location => {
           const { residents } = location;
           const arrayIdCharacters = residents.map(character => {
-            const urlPart = character.split('/')
+            const urlPart: string[] = character.split('/');
             return urlPart[urlPart.length - 1]
-          });
+          }).filter(character => character !== id);
           const getLocationCharacter: Observable<multipleCharacters> = this.httpClient.get<multipleCharacters>(`${this.URL}/${arrayIdCharacters}`) ;
           return forkJoin(getLocationCharacter);
         })

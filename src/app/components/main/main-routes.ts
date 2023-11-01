@@ -7,11 +7,6 @@ export const majorRouter: Routes = [
     outlet: 'child'
   },
   {
-    path: 'details/:id',
-    loadComponent: () => import('./details-character-page/details-character-page.component').then(component => component.DetailsCharacterPageComponent),
-    outlet: 'child'
-  },
-  {
     path: '**',
     redirectTo: '/major'
   }
