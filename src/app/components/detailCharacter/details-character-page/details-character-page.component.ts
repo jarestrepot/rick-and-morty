@@ -4,14 +4,13 @@ import { CharactersService } from '../../main/services/characters-controller.ser
 import { characterDetail } from '@core/models/detailCharacter';
 import { Result } from '@core/models/rickAnfMorty';
 import { multipleCharacters } from '@core/models/multipleCharacter';
-import { MultipleCharactersComponent } from '@shared/components/multiple-characters/multiple-characters.component';
 import { CharacterCardComponent } from '@shared/components/character-card/character-card.component';
 import {  Router } from '@angular/router';
 
 @Component({
   selector: 'app-details-character-page',
   standalone: true,
-  imports: [CommonModule, MultipleCharactersComponent, CharacterCardComponent],
+  imports: [CommonModule, CharacterCardComponent],
   templateUrl: './details-character-page.component.html',
   styleUrls: ['./details-character-page.component.scss']
 })
