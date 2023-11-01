@@ -22,11 +22,16 @@
       </div>
     </div>
   </div>
+  <!-- Await response -->
   <ng-container *ngTemplateOutlet="awaitResponse"></ng-container>
-
 </article>
-<app-multiple-characters [multipleCharacters]="locationRelatedCharacter" />
-
+<!-- <app-multiple-characters [multipleCharacters]="locationRelatedCharacter" /> -->
+<!-- Component Card -->
+<app-character-card
+  *ngIf="locationRelatedCharacter"
+  [charactersRickAndMorty]="locationRelatedCharacter"
+  class="w-full my-10 grid place-items-center grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
+/>
 <!-- Await Response -->
 <ng-template #awaitResponse>
   <div
@@ -35,8 +40,6 @@
     class="grid grid-cols-2 gap-20 place-items-start mt-20 border rounded-lg border-malachite-500 dark:border-blue-ribbon-500 h-80 w-2/3 p-4">
     <!-- Image -->
     <div class="w-full flex justify-start bg-slate-600 h-full">
-      <!-- <img src="{{caharacter.image}}" alt="{{caharacter.name}}"
-        class="w-full object-fill object-center rounded shadow-lg"> -->
     </div>
     <!-- Information -->
     <div class="w-full py-10 flex flex-col items-start justify-start gap-4 rounded h-full ">

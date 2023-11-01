@@ -5,12 +5,13 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { CharactersService } from '@components/main/services/characters-controller.service';
 import { ServicesService } from '../search/services/services.service';
 import { RouterLink } from '@angular/router';
+import { CharacterCardComponent } from '../character-card/character-card.component';
 
 
 @Component({
   selector: 'app-card-component',
   standalone: true,
-  imports: [CommonModule, InfiniteScrollModule, RouterLink],
+  imports: [CommonModule, InfiniteScrollModule, RouterLink, CharacterCardComponent],
   templateUrl: './card-component.component.html',
   styleUrls: ['./card-component.component.scss']
 })
@@ -44,8 +45,7 @@ export class CardComponentComponent implements OnInit {
       }
     )
   }
-
-
+  
   asignedSearch(key:string){
     if(key === 'false'){
       this.search = undefined;

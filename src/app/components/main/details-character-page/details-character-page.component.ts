@@ -5,11 +5,12 @@ import { characterDetail } from '@core/models/detailCharacter';
 import { Result } from '@core/models/rickAnfMorty';
 import { multipleCharacters } from '@core/models/multipleCharacter';
 import { MultipleCharactersComponent } from '@shared/components/multiple-characters/multiple-characters.component';
+import { CharacterCardComponent } from '@shared/components/character-card/character-card.component';
 
 @Component({
   selector: 'app-details-character-page',
   standalone: true,
-  imports: [CommonModule, MultipleCharactersComponent],
+  imports: [CommonModule, MultipleCharactersComponent, CharacterCardComponent ],
   templateUrl: './details-character-page.component.html',
   styleUrls: ['./details-character-page.component.scss']
 })
@@ -28,23 +29,21 @@ export class DetailsCharacterPageComponent implements OnInit {
   }
 
   characterDetails(){
-    if (this.id) {
-      setTimeout(()=> {
-        if(this.id){
-          this.detailService.characterDetails$(this.id).subscribe(
-            {
-              next: (response: characterDetail) => {
-                this.caharacter = response;
-                this.locationDetails(response.location.url)
-              },
-              error: (error: Error) => {
-                console.log(error);
-              }
+    setTimeout(()=> {
+      if(this.id){
+        this.detailService.characterDetails$(this.id).subscribe(
+          {
+            next: (response: characterDetail) => {
+              this.caharacter = response;
+              this.locationDetails(response.location.url)
+            },
+            error: (error: Error) => {
+              console.log(error);
             }
-          );
-        }
-      }, 5000)
-    }
+          }
+        );
+      }
+    }, 5000)
     // Redirect
   }
 
