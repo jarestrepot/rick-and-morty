@@ -2,8 +2,10 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { enviroment } from '@env/enviroments';
 import { ApiRickAndMorty, Result } from '@core/models/rickAnfMorty';
-import { Observable, map, share } from 'rxjs';
+import { Observable, filter, forkJoin, map, share, switchMap } from 'rxjs';
 import { characterDetail } from '@core/models/detailCharacter';
+import { urlLocation } from '@core/models/urlLocation';
+import { multipleCharacters } from '@core/models/multipleCharacter';
 
 
 @Injectable({
@@ -23,6 +25,20 @@ export class CharactersService{
     return this.httpClient.get<characterDetail>(`${URL}/${characterId}`);
   }
 
+  locationCharacters$ = (url: string):Observable <multipleCharacters[]> => {
+    return this.httpClient.get < urlLocation >(url)
+      .pipe(
+        switchMap(location => {
+          const { residents } = location;
+          const arrayIdCharacters = residents.map(character => {
+            const urlPart = character.split('/')
+            return urlPart[urlPart.length - 1]
+          });
+          const getLocationCharacter: Observable<multipleCharacters> = this.httpClient.get<multipleCharacters>(`${this.URL}/${arrayIdCharacters}`) ;
+          return forkJoin(getLocationCharacter);
+        })
+      );
+  }
 
 }
 const URL = enviroment.API;

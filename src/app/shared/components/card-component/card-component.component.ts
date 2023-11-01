@@ -22,6 +22,7 @@ export class CardComponentComponent implements OnInit {
   nextUrl!: string;
   findCharacters!: Result[] | undefined;
   search: string | undefined = '';
+  // @Input() multipleCharacters
 
   ngOnInit(): void {
     this.serachCharacter.keypress.subscribe(

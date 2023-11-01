@@ -2,12 +2,14 @@ import { Component, Input, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CharactersService } from '../services/characters-controller.service';
 import { characterDetail } from '@core/models/detailCharacter';
-import { urlLocation, location } from '@core/models/urlLocation';
+import { Result } from '@core/models/rickAnfMorty';
+import { multipleCharacters } from '@core/models/multipleCharacter';
+import { MultipleCharactersComponent } from '@shared/components/multiple-characters/multiple-characters.component';
 
 @Component({
   selector: 'app-details-character-page',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MultipleCharactersComponent],
   templateUrl: './details-character-page.component.html',
   styleUrls: ['./details-character-page.component.scss']
 })
@@ -16,20 +18,23 @@ export class DetailsCharacterPageComponent implements OnInit {
   caharacter?: characterDetail;
   @Input() id?: string;
   detailService = inject(CharactersService);
-  urlLocation?: location;
-  locationRelatedCharacter?: urlLocation;
+
+  locationRelatedCharacter?: Result[] ;
 
   constructor() {
   }
   ngOnInit(): void {
+    console.log(this.id)
+    this.characterDetails();
+  }
+
+  characterDetails(){
     if (this.id) {
-      // Consumo de la api.
       this.detailService.characterDetails$(this.id).subscribe(
         {
           next: (response: characterDetail) => {
             this.caharacter = response;
-            const { location }= response;
-            this.urlLocation = location;
+            this.locationDetails(response.location.url)
           },
           error: (error: Error) => {
             console.log(error);
@@ -38,7 +43,19 @@ export class DetailsCharacterPageComponent implements OnInit {
       );
     }
     // Redirect
-    console.log(this.caharacter?.location.url)
+  }
+
+  locationDetails(url:string){
+    this.detailService.locationCharacters$(url).subscribe(
+      {
+        next: (response: multipleCharacters[]) => {
+          this.locationRelatedCharacter = response.flat();
+        },
+        error: (error:Error) => {
+          console.error(error);
+        }
+      }
+    )
   }
 
 

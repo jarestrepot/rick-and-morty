@@ -11,6 +11,9 @@ export const homeRoutes: Routes = [
     path: 'chapters',
     loadChildren: () => import('../chapters/chapter-routes').then(routes => routes.chaptersRoutes),
   },
+  // {
+  //   path: 'details/:id',
+  // },
   {
     path:'**',
     redirectTo:'/major'
