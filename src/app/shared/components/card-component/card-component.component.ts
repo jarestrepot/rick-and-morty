@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ApiRickAndMorty, Result } from '@core/models/rickAnfMorty';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
@@ -6,22 +6,23 @@ import { CharactersService } from '@components/main/services/characters-controll
 import { ServicesService } from '../search/services/services.service';
 import { RouterLink } from '@angular/router';
 import { CharacterCardComponent } from '../character-card/character-card.component';
+import { SearchCardComponent } from '../search-card/search-card.component';
 
 
 @Component({
   selector: 'app-card-component',
   standalone: true,
-  imports: [CommonModule, InfiniteScrollModule, RouterLink, CharacterCardComponent],
+  imports: [CommonModule, InfiniteScrollModule, RouterLink, CharacterCardComponent, SearchCardComponent],
   templateUrl: './card-component.component.html',
   styleUrls: ['./card-component.component.scss']
 })
 export class CardComponentComponent implements OnInit {
 
-  serachCharacter = inject(ServicesService)
+  serachCharacter = inject(ServicesService);
   charactersRickAndMorty!: Result[];
   charactersRickAndMortyInject = inject(CharactersService);
   nextUrl!: string;
-  findCharacters!: Result[] | undefined;
+  @Input() findCharacters!: Result[] | undefined;
   search: string | undefined = '';
 
   ngOnInit(): void {
@@ -45,7 +46,7 @@ export class CardComponentComponent implements OnInit {
       }
     )
   }
-  
+
   asignedSearch(key:string){
     if(key === 'false'){
       this.search = undefined;

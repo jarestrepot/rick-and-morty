@@ -6,11 +6,13 @@ import { Result } from '@core/models/rickAnfMorty';
 import { multipleCharacters } from '@core/models/multipleCharacter';
 import { CharacterCardComponent } from '@shared/components/character-card/character-card.component';
 import {  Router } from '@angular/router';
+import { ServicesService } from '@shared/components/search/services/services.service';
+import { SearchCardComponent } from '@shared/components/search-card/search-card.component';
 
 @Component({
   selector: 'app-details-character-page',
   standalone: true,
-  imports: [CommonModule, CharacterCardComponent],
+  imports: [CommonModule, CharacterCardComponent, SearchCardComponent],
   templateUrl: './details-character-page.component.html',
   styleUrls: ['./details-character-page.component.scss']
 })
@@ -20,17 +22,28 @@ export class DetailsCharacterPageComponent implements OnInit, OnChanges {
   @Input() id?: string;
   detailService = inject(CharactersService);
   routerLink = inject(Router);
-
-  locationRelatedCharacter?: Result[] ;
+  searchServiceKeypress = inject(ServicesService)
+  locationRelatedCharacter: Result[] = [];
+  findCharacters: Result[] = [];
 
   ngOnInit(): void {
-    this.id ? this.characterDetails(this.id) : this.redirecMain()
+    this.id ? this.characterDetails(this.id) : this.redirecMain();
+    this.searchServiceKeypress.keypress.subscribe({
+      next: (key: string) =>{
+        this.findCharacters = this.locationRelatedCharacter?.filter((character: Result) => {
+          return character.name.toLowerCase().includes(key.toLowerCase())
+        });
+      },
+      error: (err: Error) =>{
+        console.error(err)
+      }
+    })
   }
   ngOnChanges(changes: SimpleChanges): void {
-      if(changes){
-        const { currentValue } = changes['id'];
-        this.characterDetails(currentValue)
-      }
+    if(changes){
+      const { currentValue } = changes['id'];
+      this.characterDetails(currentValue)
+    }
   }
 
   characterDetails(idCharacter: string){
@@ -50,10 +63,10 @@ export class DetailsCharacterPageComponent implements OnInit, OnChanges {
       }
   }
 
-
   redirecMain(){
     this.routerLink.navigate(['/', 'major'])
   }
+
   locationDetails(url:string){
     this.detailService.locationCharacters$(url, String(this.caharacter?.id)).subscribe(
       {

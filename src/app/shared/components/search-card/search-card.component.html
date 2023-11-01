@@ -1,0 +1,29 @@
+
+<div
+  class="grid auto-cols-auto lg:auto-cols-max gap-3 place-items-center w-full hover:scale-105 transition-all duration-300"
+  *ngFor="let character of findCharacters">
+  <img [src]="character.image" class="object-cover rounded object-center animation shadow-md
+      dark:shadow-lg shadow-malachite-500 dark:shadow-blue-ribbon-600" [alt]="character.name">
+
+  <div
+    class="flex flex-col justify-center items-center lg:justify-start lg:items-start p-3 text-malachite-500 dark:text-white w-full h-full animation">
+    <p class="text-malachite-500 dark:text-blue-ribbon-500 text-lg xl:text-xl">
+      <strong>{{character.name}}</strong>
+    </p>
+    <p class="text-lg xl:text-xl dark:text-white underline decoration-2 underline-offset-4" [ngClass]="
+      {
+        'before:content-[\'☠️\'] decoration-red-700 text-red-900': character.status !== 'Alive',
+        'before:content-[\'✅\'] decoration-malachite-500': character.status === 'Alive'
+      }">
+      {{character.status}}
+    </p>
+    <p class="text-lg xl:text-xl text-black dark:text-white">
+      {{character.species}}
+    </p>
+    <p class="text-base xl:text-lg text-black dark:text-white">
+      {{character.location.name}}
+    </p>
+  </div>
+</div>
+
+

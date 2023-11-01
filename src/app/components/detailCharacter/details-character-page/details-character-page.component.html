@@ -1,24 +1,24 @@
-<article id="section-details" class="mt-56 w-full mb-20 grid place-items-center">
+<article id="section-details" class="mt-28 lg:mt-56 w-full mb-20 grid place-items-center">
   <div class="w-2/3">
-    <h2 class="text-6xl text-center font-bold titleDegrant">Details character</h2>
+    <h2 class=" text-4xl lg:text-6xl text-center font-bold titleDegrant">Details character</h2>
 
     <div *ngIf="caharacter"
-      class="grid grid-cols-2 gap-20 place-items-start mt-20 border rounded-lg border-malachite-500 dark:border-blue-ribbon-500"
+      class="grid grid-flow-row lg:grid-cols-2 lg:grid-flow-col lg:gap-4 justify-stretch mt-20 border rounded-lg overflow-hidden border-malachite-500 dark:border-blue-ribbon-500"
     >
       <!-- Image -->
-      <div class="w-full flex justify-start">
+      <div class="w-full flex justify-start h-full">
         <img src="{{caharacter.image}}" alt="{{caharacter.name}}"
-          class="w-full object-fill object-center rounded shadow-lg">
+          class="w-full h-full object-cover object-center rounded-t-lg lg:rounded-l-lg shadow-lg">
       </div>
       <!-- Information -->
-      <div class="w-full py-10 flex flex-col items-start justify-start gap-4">
+      <div class="w-full py-4 text-stuffed flex flex-col items-start justify-start gap-2 text-sm md:text-lg">
         <p class="titleDegrant text-2xl font-medium">{{caharacter.name}}</p>
-        <p class="text-stuffed">{{caharacter.status}}</p>
-        <p class="text-stuffed">{{caharacter.species}}</p>
-        <p class="text-stuffed">{{caharacter.gender}}</p>
-        <p class="text-stuffed">{{caharacter.type}}</p>
-        <p class="text-stuffed">{{caharacter.location.name}}</p>
-        <p class="text-stuffed">{{caharacter.origin.name}}</p>
+        <p>{{caharacter.status}}</p>
+        <p>{{caharacter.species}}</p>
+        <p>{{caharacter.gender}}</p>
+        <p>{{caharacter.type}}</p>
+        <p>{{caharacter.location.name}}</p>
+        <p>{{caharacter.origin.name}}</p>
       </div>
     </div>
   </div>
@@ -26,11 +26,20 @@
   <ng-container *ngTemplateOutlet="awaitResponse"></ng-container>
 </article>
 <!-- Component Card -->
+<h2 *ngIf="locationRelatedCharacter" class="titleDegrant text-center text-xl md:text-2xl font-bold">Related characters due to their location</h2>
 <app-character-card
-  *ngIf="locationRelatedCharacter"
+  *ngIf="locationRelatedCharacter && findCharacters.length === 0"
   [charactersRickAndMorty]="locationRelatedCharacter"
   class="w-full my-10 grid place-items-center grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
 />
+<!-- Serach Component -->
+<app-search-card
+  *ngIf="findCharacters"
+  [findCharacters]="findCharacters"
+  class="my-30 w-full h-auto p-4 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-12 place-items-center"
+/>
+
+
 <!-- Await Response -->
 <ng-template #awaitResponse>
   <div
