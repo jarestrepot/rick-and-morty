@@ -14,7 +14,7 @@ export class MultipleCharactersComponent {
 
   @Input() multipleCharacters?: Result[];
   constructor(private router:Router){
-
+    
   }
   routeGo(id:number){
     this.router.navigate(['/major', { outlets: { child : ['details', id] }}]);

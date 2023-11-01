@@ -9,17 +9,23 @@
       </div>
       <div>
         <p class="text-malachite-500 dark:text-white text-lg xl:text-xl">
-          Results: <span class="text-2xl text-malachite-500 dark:text-blue-ribbon-500">{{ findCharacters?.length ?? 'Not
-            found' }}</span>
+          Results: <span class="text-2xl text-malachite-500 dark:text-blue-ribbon-500">{{findCharacters?.length ? findCharacters?.length : 'No character found' }}</span>
         </p>
       </div>
     </div>
   </div>
 </div>
+
+
 <!-- Infinity Scroll -->
-<div *ngIf="!findCharacters && !search" infiniteScroll [infiniteScrollDistance]="1" [infiniteScrollUpDistance]="1"
-  [infiniteScrollThrottle]="50" (scrolled)="onScroll()"
-  class="my-20 w-1/2 h-auto p-4 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 place-items-center">
+<div *ngIf="!findCharacters && !search"
+  infiniteScroll
+  [infiniteScrollDistance]="1"
+  [infiniteScrollUpDistance]="1"
+  [infiniteScrollThrottle]="50"
+  (scrolled)="onScroll()"
+  class="my-20 w-1/2 h-auto p-4 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 place-items-center"
+>
   <div class="grid grid-cols-1 w-full gap-4 place-items-center" *ngFor="let character of charactersRickAndMorty">
     <img data-id="{{character.id}}" [src]="character.image" class="object-cover rounded object-center animation shadow-md
         dark:shadow-lg shadow-malachite-500 dark:shadow-blue-ribbon-600" [alt]="character.name">

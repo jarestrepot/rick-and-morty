@@ -24,23 +24,26 @@ export class DetailsCharacterPageComponent implements OnInit {
   constructor() {
   }
   ngOnInit(): void {
-    console.log(this.id)
     this.characterDetails();
   }
 
   characterDetails(){
     if (this.id) {
-      this.detailService.characterDetails$(this.id).subscribe(
-        {
-          next: (response: characterDetail) => {
-            this.caharacter = response;
-            this.locationDetails(response.location.url)
-          },
-          error: (error: Error) => {
-            console.log(error);
-          }
+      setTimeout(()=> {
+        if(this.id){
+          this.detailService.characterDetails$(this.id).subscribe(
+            {
+              next: (response: characterDetail) => {
+                this.caharacter = response;
+                this.locationDetails(response.location.url)
+              },
+              error: (error: Error) => {
+                console.log(error);
+              }
+            }
+          );
         }
-      );
+      }, 5000)
     }
     // Redirect
   }

@@ -2,7 +2,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ApiRickAndMorty, Result } from '@core/models/rickAnfMorty';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
-import { CharactersService, nextAllCharacters$ } from '@components/major/services/characters-controller.service';
+import { CharactersService } from '@components/main/services/characters-controller.service';
 import { ServicesService } from '../search/services/services.service';
 import { RouterLink } from '@angular/router';
 
@@ -22,7 +22,6 @@ export class CardComponentComponent implements OnInit {
   nextUrl!: string;
   findCharacters!: Result[] | undefined;
   search: string | undefined = '';
-  // @Input() multipleCharacters
 
   ngOnInit(): void {
     this.serachCharacter.keypress.subscribe(
@@ -31,6 +30,19 @@ export class CardComponentComponent implements OnInit {
         this.asignedSearch(key)
       }
     );
+
+    this.charactersRickAndMortyInject.nextAllCharacters$().subscribe(
+      {
+        next: (response: ApiRickAndMorty ) => {
+          let { results, info } = response;
+            this.nextUrl = info.next;
+            this.charactersRickAndMorty = results;
+        },
+        error: (err:Error) => {
+          console.log(err)
+        }
+      }
+    )
   }
 
 
@@ -53,22 +65,6 @@ export class CardComponentComponent implements OnInit {
       return undefined;
     };
     return results;
-  }
-
-  constructor() {
-    nextAllCharacters$().subscribe(
-      {
-        next: (response: ApiRickAndMorty) => {
-          let { results, info } = response;
-          this.nextUrl = info.next;
-          this.charactersRickAndMorty = results;
-        },
-        error: (error: any) => {
-          console.log(error)
-        }
-      }
-    );
-
   }
 
   onScroll() {
