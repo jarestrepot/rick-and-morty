@@ -1,7 +1,9 @@
 
-<div
+<a
   class="grid auto-cols-auto lg:auto-cols-max gap-3 place-items-center w-full hover:scale-105 transition-all duration-300"
-  *ngFor="let character of findCharacters">
+  *ngFor="let character of findCharacters"
+  [routerLink]="['/details', character.id]"
+>
   <img [src]="character.image" class="object-cover rounded object-center animation shadow-md
       dark:shadow-lg shadow-malachite-500 dark:shadow-blue-ribbon-600" [alt]="character.name">
 
@@ -24,6 +26,6 @@
       {{character.location.name}}
     </p>
   </div>
-</div>
+</a>
 
 
