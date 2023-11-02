@@ -1,1 +1,21 @@
-<p>chapters-all works!</p>
+<section class="w-full h-auto my-28 lg:my-40 bg-transparent">
+  <img
+    src="../../../../../assets/img_ricky/comprimida/space-api.png"
+    alt="Rick and morty"
+    class="hidden absolute md:block top-0 left-0 w-screen object-cover blur-sm
+    object-center h-auto -z-20"
+  >
+  <div class="flex flex-col gap-14">
+    <h2 class="titleDegrant text-2xl lg:text-6xl font-bold">Section characters</h2>
+    <p class="text-lg text-malachite-400 dark:text-blue-ribbon-400">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore esse, ducimus vel, magni explicabo inventore corrupti, quam doloribus aut enim voluptatem libero quisquam accusantium temporibus in. Dicta nihil aut culpa.</p>
+
+    <app-character-card
+      *ngIf="characteresFind"
+      [charactersRickAndMorty]="characteresFind"class="w-full my-10 grid place-items-center grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
+    />
+
+    <div class="rounded-lg border border-red-800 w-2/4" *ngIf="messageError">
+      <p class="text-center text-blue-ribbon-700">Not found character! ☠️</p>
+    </div>
+  </div>
+</section>
