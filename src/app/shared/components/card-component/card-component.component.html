@@ -1,14 +1,15 @@
-<div *ngIf="search && search.length > 0" class="w-full grid place-items-center px-40">
+<div *ngIf="search && search.length > 0" class="w-full grid place-items-center">
   <div
-    class="h-auto w-full lg:w-1/3 rounded-md bg-gradient-to-br from-malachite-500 via-malachite-700 to-malachite-200 p-1 my-10 dark:from-blue-ribbon-500 dark:via-blue-ribbon-700 dark:to-blue-ribbon-200">
-    <div class="flex h-auto w-full items-center justify-center flex-col bg-malachite-50 dark:bg-slate-700 back">
+    class="h-auto w-10/12 lg:w-1/3 bg-gradient-to-br from-malachite-500 via-malachite-700 to-malachite-200 pb-1 my-10 dark:from-blue-ribbon-500 dark:via-blue-ribbon-700 dark:to-blue-ribbon-200"
+  >
+    <div class="flex h-auto w-full items-center justify-center flex-col bg-malachite-50 dark:bg-slate-700">
       <div>
         <p class="text-malachite-500 dark:text-white text-lg xl:text-xl">
           Search: <span class="text-2xl text-malachite-500 dark:text-blue-ribbon-500">{{ search }}</span>
         </p>
       </div>
       <div>
-        <p class="text-malachite-500 dark:text-white text-lg xl:text-xl">
+        <p class="text-malachite-500 dark:text-white text-lg xl:text-xl mb-2">
           Results: <span class="text-2xl text-malachite-500 dark:text-blue-ribbon-500">{{findCharacters?.length ? findCharacters?.length : 'No character found' }}</span>
         </p>
       </div>

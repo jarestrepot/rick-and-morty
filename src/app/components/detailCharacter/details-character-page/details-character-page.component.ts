@@ -35,7 +35,7 @@ export class DetailsCharacterPageComponent implements OnInit, OnChanges {
         });
       },
       error: (err: Error) =>{
-        console.error(err)
+        this.redirecMain()
       }
     })
   }
@@ -46,13 +46,20 @@ export class DetailsCharacterPageComponent implements OnInit, OnChanges {
     }
   }
 
+  scrollToTop() {
+    window.scrollTo({ top: 10, behavior: 'smooth' });
+  }
+
   characterDetails(idCharacter: string){
     if (idCharacter){
       this.detailService.characterDetails$(idCharacter).subscribe(
           {
             next: (response: characterDetail) => {
+              this.scrollToTop();
               this.caharacter = response;
-              this.locationDetails(response.location.url)
+              response.location.url
+                ? this.locationDetails(response.location.url)
+                :  this.episodeDetails(response.episode);
             },
             error: (error: Error) => {
               this.redirecMain()
@@ -65,6 +72,19 @@ export class DetailsCharacterPageComponent implements OnInit, OnChanges {
 
   redirecMain(){
     this.routerLink.navigate(['/', 'major'])
+  }
+
+  episodeDetails(episodes: string[]){
+    episodes.map(episode => {
+      this.detailService.episodeCharacter$(episode).subscribe({
+        next: (response) => {
+          this.locationRelatedCharacter = response.flat();
+        },
+        error:(error) => {
+          console.log(error);
+        }
+      })
+    })
   }
 
   locationDetails(url:string){

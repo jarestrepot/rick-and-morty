@@ -6,6 +6,7 @@ import { Observable, forkJoin, map, share, switchMap } from 'rxjs';
 import { characterDetail } from '@core/models/detailCharacter';
 import { urlLocation } from '@core/models/urlLocation';
 import { multipleCharacters } from '@core/models/multipleCharacter';
+import { episodeCharacter } from '@core/models/episodeCharacter';
 
 
 @Injectable({
@@ -38,14 +39,33 @@ export class CharactersService{
       .pipe(
         switchMap(location => {
           const { residents } = location;
-          const arrayIdCharacters = residents.map(character => {
+          const arrayIdCharacters = residents.map((character:string) => {
             const urlPart: string[] = character.split('/');
             return urlPart[urlPart.length - 1]
           }).filter(character => character !== id);
-          const getLocationCharacter: Observable<multipleCharacters> = this.httpClient.get<multipleCharacters>(`${this.URL}/${arrayIdCharacters}`) ;
-          return forkJoin(getLocationCharacter);
+
+          return forkJoin(this.findCharacters$(arrayIdCharacters));
         })
       );
+  }
+
+  episodeCharacter$ = (episodesUrl: string): Observable<multipleCharacters[]> => {
+    return this.httpClient.get<episodeCharacter>(episodesUrl)
+      .pipe(
+        switchMap(episode => {
+          const { characters } = episode;
+          const arrayIdCharacters = characters.map((character:string) => {
+            const urlPart: string[] = character.split('/');
+            return urlPart[urlPart.length - 1]
+          });
+
+          return forkJoin(this.findCharacters$(arrayIdCharacters));
+        })
+      )
+  }
+
+  findCharacters$(ids: string[]): Observable<multipleCharacters>{
+    return this.httpClient.get<multipleCharacters>(`${this.URL}/${ids}`);
   }
 }
 
