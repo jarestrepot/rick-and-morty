@@ -38,6 +38,7 @@ export class ChaptersAllComponent implements OnInit {
         next: (response: ApiRickAndMorty) => {
           const { results } = response;
           this.characteresFind = results;
+          this.messageError = false;
         },
         error: (e: Error) => {
           this.characteresFind = [];
