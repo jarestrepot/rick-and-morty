@@ -3,7 +3,9 @@
     <h2  class="text-4xl my-3 p-2 lg:text-6xl text-center font-bold titleDegrant">Details {{caharacter ?caharacter.name : 'Caharacter' }}</h2>
 
     <div *ngIf="caharacter"
-      class="grid grid-flow-row lg:grid-cols-2 lg:grid-flow-col lg:gap-4 justify-stretch mt-20 border rounded-lg overflow-hidden border-malachite-500 dark:border-blue-ribbon-500 shadow-md shadow-blue-ribbon-400"
+      (mouseenter)="onMouseEnter($event)"
+      (mouseleave)="onMouseLeave($event)"
+      class="grid grid-flow-row lg:grid-cols-2 lg:grid-flow-col lg:gap-4 justify-stretch mt-20  overflow-hidden  shadow-md shadow-malachite-400 dark:shadow-blue-ribbon-400"
     >
       <!-- Image -->
       <div class="w-full flex justify-start h-full">
@@ -11,7 +13,10 @@
           class="w-full h-full object-cover object-center rounded-t-lg lg:rounded-l-lg shadow-lg">
       </div>
       <!-- Information -->
-      <div class="w-full py-4 text-stuffed flex flex-col items-start justify-start gap-2 text-sm md:text-lg">
+      <div
+        class="w-full py-4 text-stuffed flex flex-col items-start justify-start gap-2 text-sm md:text-lg translate-x-96"
+        #character
+      >
         <span class="titleDegrant">Status</span>
         <p class="px-2">{{caharacter.status}}</p>
         <span class="titleDegrant">Species</span>
@@ -30,7 +35,7 @@
   <ng-container *ngTemplateOutlet="awaitResponse"></ng-container>
 </article>
 <!-- Component Card -->
-<h2 *ngIf="locationRelatedCharacter" class="titleDegrant text-center text-xl md:text-2xl font-bold">Related characters due to their location</h2>
+<h2 *ngIf="locationRelatedCharacter.length > 0" class="titleDegrant text-center text-xl md:text-2xl font-bold">Related characters due to their location</h2>
 <app-character-card
   *ngIf="locationRelatedCharacter && findCharacters.length === 0"
   [charactersRickAndMorty]="locationRelatedCharacter"

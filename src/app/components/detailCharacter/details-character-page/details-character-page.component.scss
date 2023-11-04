@@ -1,0 +1,26 @@
+
+@keyframes slideInX {
+  from {
+    transform: translateX(28rem);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+@keyframes slideOutX {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(24rem);
+  }
+}
+
+.slide-in-x {
+  animation: slideInX 0.8s ease-in-out;
+}
+.slide-out-x{
+  animation: slideOutX 0.8s ease-in-out;
+}

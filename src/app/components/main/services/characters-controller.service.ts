@@ -2,7 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { enviroment } from '@env/enviroments';
 import { ApiRickAndMorty } from '@core/models/rickAnfMorty';
-import { Observable, forkJoin, map, share, switchMap } from 'rxjs';
+import { Observable, forkJoin, map, of, share, switchMap } from 'rxjs';
 import { characterDetail } from '@core/models/detailCharacter';
 import { urlLocation } from '@core/models/urlLocation';
 import { multipleCharacters } from '@core/models/multipleCharacter';
@@ -43,7 +43,9 @@ export class CharactersService{
             const urlPart: string[] = character.split('/');
             return urlPart[urlPart.length - 1]
           }).filter(character => character !== id);
-
+          if (arrayIdCharacters.length === 0){
+            return of([])
+          }
           return forkJoin(this.findCharacters$(arrayIdCharacters));
         })
       );
