@@ -73,19 +73,29 @@ export class DetailsCharacterPageComponent implements OnInit, OnChanges {
   }
 
   onMouseLeave(event: MouseEvent){
-    this.renderer2.removeClass(this.character.nativeElement, 'slide-in-x');
-    this.renderer2.addClass(this.character.nativeElement, 'slide-out-x');
-    this.renderer2.addClass(this.character.nativeElement, 'translate-x-96');
+    this.removeClassElement(this.character.nativeElement, ['slide-in-x']);
+    this.addClassElement(this.character.nativeElement, ['slide-out-x', 'translate-x-96']);
   }
   onMouseEnter({ target }: any){
     if(target){
-      this.renderer2.removeClass(target.children[1], 'translate-x-96')
-      this.renderer2.removeClass(target.children[1], 'slide-out-x');
-      this.renderer2.addClass(target.children[1], 'slide-in-x');
+      this.removeClassElement(target.children[1], ['translate-x-96', 'slide-out-x']);
+      this.addClassElement(target.children[1], ['slide-in-x']);
     }
   }
   redirecMain(){
     this.routerLink.navigate(['/', 'major'])
+  }
+
+  addClassElement(element: ElementRef, className:string[]){
+    for (let newClass in className){
+      this.renderer2.addClass(element, className[newClass])
+    }
+  }
+
+  removeClassElement(element: ElementRef, className: string[]){
+    for (let deleteClass in className) {
+      this.renderer2.removeClass(element, className[deleteClass])
+    }
   }
 
   episodeDetails(episodes: string[]){
