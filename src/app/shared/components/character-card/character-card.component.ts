@@ -12,5 +12,6 @@ import { RouterLink } from '@angular/router';
 })
 export class CharacterCardComponent {
   @Input() charactersRickAndMorty!: Result[];
-  
+  @Input() colorText!: string;
+
 }

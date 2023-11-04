@@ -1,18 +1,58 @@
 <a
-  class="grid grid-cols-1 w-fit gap-4 place-items-center"
+  class="w-[90%] md:w-full h-full overflow-hidden group shadow-md shadow-grey-500/50 rounded-lg xl:flex gap-2 dark:bg-blue-ribbon-500/10 dark:shadow-zinc-500/50 hover:scale-[1.02] transform-gpu cursor-pointer duration-150 animation"
   [routerLink]="['/details', character.id]"
   *ngFor="let character of charactersRickAndMorty"
 >
-  <img data-id="{{character.id}}" [src]="character.image" class="object-cover rounded object-center animation shadow-md
-      dark:shadow-lg shadow-malachite-500 dark:shadow-blue-ribbon-600 hover:scale-105 duration-200 transition-all" [alt]="character.name">
-  <div class="flex flex-col w-full h-auto justify-center items-center gap-2 animation mt-4">
-    <p class="titleDegrant text-base xl:text-xl"><strong>{{character.name}}</strong></p>
-    <p class=" text-sm lg:text-lg underline decoration-2 underline-offset-4" [ngClass]="
+  <img class="object-cover w-full xl:w-52 2xl:h-72 2xl:w-auto" [src]="character.image" [alt]="character.name" />
+  <div class='p-2'>
+    <h2 class='font-bold tracking-wide text-2xl 2xl:text-3xl titleDegrant'>{{ character.name }}</h2>
+    <div class="mt-2 text-xl flex flex-col sm:flex-row md:items-center sm:gap-2  2xl:text-2xl 2xl:mt-5 dark:text-slate-50">
+      <div class='rounded-full w-2 h-2 2xl:w-3 2xl:h-3 me-2 hidden sm:block' [ngClass]="
         {
-          'before:content-[\'☠️\'] decoration-red-700 text-red-700': character.status !== 'Alive',
-          'before:content-[\'✅\'] decoration-malachite-500 text-malachite-500': character.status === 'Alive'
-        }">
-      {{character.status}}
-    </p>
+          'bg-red-500 decoration-red-700 text-red-700': character.status === 'Dead',
+          'bg-green-500 decoration-malachite-500 text-malachite-500': character.status === 'Alive',
+          'bg-yellow-500 ': character.status === 'unknown',
+        }
+      ">
+      </div>
+      <span
+        [ngClass]="
+        {
+          'text-red-700': character.status !== 'Alive',
+          'text-malachite-500': character.status === 'Alive',
+          'text-yellow-500': character.status === 'unknown'
+        }"
+      >
+        {{ character.status }}
+      </span>
+      <span class="sm:before:content-['-'] font-semibold {{ colorText ? colorText : ''}}"
+      >
+        {{ character.species }}
+      </span>
+    </div>
+
+    <h3 class="2xl:text-lg mt-5 2xl:mt-4 font-semibold titleDegrant">Gender:
+      <span class="text-lg 2xl:text-xl text-slate-600 dark:text-slate-200"
+        [ngClass]="
+          {
+            'text-white' : colorText === 'text-white',
+            'text-slate-600': colorText !== 'text-white'
+          }
+        "
+      > {{ character.gender }}</span>
+    </h3>
+
+    <h3 class="2xl:text-lg mb-4 md:mb-1 titleDegrant font-semibold">Location:
+      <span class="text-lg 2xl:text-xl dark:text-slate-200"
+      [ngClass]="
+        {
+          'text-white' : colorText === 'text-white',
+          'text-slate-600': colorText !== 'text-white'
+        }
+      "
+      > {{ character.location.name }}</span>
+    </h3>
+
   </div>
 </a>
+

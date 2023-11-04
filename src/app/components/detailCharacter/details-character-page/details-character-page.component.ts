@@ -57,6 +57,7 @@ export class DetailsCharacterPageComponent implements OnInit, OnChanges {
             next: (response: characterDetail) => {
               this.scrollToTop();
               this.caharacter = response;
+              console.log(this.caharacter)
               response.location.url
                 ? this.locationDetails(response.location.url)
                 :  this.episodeDetails(response.episode);
