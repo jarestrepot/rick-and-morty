@@ -25,11 +25,11 @@
       >
         {{ character.status }}
       </span>
-      <span class="sm:before:content-['-'] font-semibold {{ colorText ? colorText : ''}}"
-      >
-        {{ character.species }}
-      </span>
     </div>
+    <span class="sm:before:content-['-'] text-base font-semibold {{ colorText ? colorText : 'dark:text-slate-50'}}"
+    >
+      {{ character.species }}
+    </span>
 
     <h3 class="2xl:text-lg mt-5 2xl:mt-4 font-semibold titleDegrant">Gender:
       <span class="text-lg 2xl:text-xl text-slate-600 dark:text-slate-200"

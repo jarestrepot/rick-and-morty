@@ -8,11 +8,12 @@ import { CharacterCardComponent } from '@shared/components/character-card/charac
 import {  Router } from '@angular/router';
 import { ServicesService } from '@shared/components/search/services/services.service';
 import { SearchCardComponent } from '@shared/components/search-card/search-card.component';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-details-character-page',
   standalone: true,
-  imports: [CommonModule, CharacterCardComponent, SearchCardComponent],
+  imports: [CommonModule, CharacterCardComponent, SearchCardComponent, FormsModule],
   templateUrl: './details-character-page.component.html',
   styleUrls: ['./details-character-page.component.scss']
 })
@@ -26,27 +27,55 @@ export class DetailsCharacterPageComponent implements OnInit, OnChanges {
   renderer2 = inject(Renderer2);
   locationRelatedCharacter: Result[] = [];
   findCharacters: Result[] = [];
-  @ViewChild('character') character!: ElementRef
+  @ViewChild('character') character!: ElementRef;
+  selectedStatus: string = '';
+  selectedGender: string = '';
+  selectedSpecies: string = '';
+
+  filterCharacter: Result[] = [];
+
+  status: string[] = [];
+  gender: string[] = [];
+  species: string[] = [];
 
   ngOnInit(): void {
     this.id ? this.characterDetails(this.id) : this.redirecMain();
     this.searchServiceKeypress.keypress.subscribe({
       next: (key: string) =>{
-        this.findCharacters = this.locationRelatedCharacter?.filter((character: Result) => {
+        this.findCharacters = this.locationRelatedCharacter.filter((character: Result) => {
           return character.name.toLowerCase().includes(key.toLowerCase())
         });
       },
       error: (err: Error) =>{
         this.redirecMain()
       }
-    })
+    });
   }
   ngOnChanges(changes: SimpleChanges): void {
     if(changes){
       const { currentValue } = changes['id'];
-      this.characterDetails(currentValue)
+      this.characterDetails(currentValue);
+      this.generalFilter()
     }
   }
+
+  generalFilter(){
+    const valuesFilter: string[] = [this.selectedSpecies, this.selectedGender, this.selectedStatus];
+    const filteredValues = valuesFilter.every( value => value === '');
+    if (filteredValues) this.locationRelatedCharacter = this.filterCharacter;
+    const valueTmp: Result[] = this.filterCharacter.filter((character: Result) => {
+      return (
+        // Verifica si al menos uno de los criterios seleccionados coincide
+        (this.selectedStatus.length === 0 || character.status === this.selectedStatus) &&
+        (this.selectedGender.length === 0 || character.gender === this.selectedGender) &&
+        (this.selectedSpecies.length === 0 || character.species === this.selectedSpecies)
+      );
+    });
+    console.log(valueTmp);
+    this.locationRelatedCharacter = valueTmp;
+    this.setAllValues(valueTmp);
+  }
+
 
   scrollToTop() {
     window.scrollTo({ top: 10, behavior: 'smooth' });
@@ -116,6 +145,8 @@ export class DetailsCharacterPageComponent implements OnInit, OnChanges {
       {
         next: (response: multipleCharacters[]) => {
           this.locationRelatedCharacter = response.flat();
+          this.filterCharacter = response.flat();
+          this.setAllValues(response.flat());
         },
         error: (error:Error) => {
           this.redirecMain()
@@ -125,4 +156,9 @@ export class DetailsCharacterPageComponent implements OnInit, OnChanges {
   }
 
 
+  setAllValues(results: Result[]){
+    this.status = [...new Set(results.map(result => result.status))];
+    this.gender = [...new Set(results.map(result => result.gender))];
+    this.species = [...new Set(results.map(result => result.species))];
+  }
 }
