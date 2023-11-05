@@ -26,7 +26,7 @@ export class DetailsCharacterPageComponent implements OnInit, OnChanges {
   searchServiceKeypress = inject(ServicesService);
   renderer2 = inject(Renderer2);
   locationRelatedCharacter: Result[] = [];
-  findCharacters: Result[] = [];
+  findCharacters: Result[]  = [];
   @ViewChild('character') character!: ElementRef;
   selectedStatus: string = '';
   selectedGender: string = '';

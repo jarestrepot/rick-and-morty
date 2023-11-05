@@ -86,11 +86,16 @@
   class="w-full my-10 grid place-items-center grid-cols-1 gap-6 md:grid-cols-2 "
 />
 <!-- Serach Component -->
-<app-search-card
+<app-character-card *ngIf="findCharacters"
+  [charactersRickAndMorty]="findCharacters"
+  class="w-full my-10 grid place-items-center grid-cols-1 gap-6 md:grid-cols-2 "
+/>
+<!-- <app-search-card
   *ngIf="findCharacters"
   [findCharacters]="findCharacters"
   class="my-30 w-full h-auto p-4 grid grid-cols-1 md:grid-cols-2 gap-12 place-items-center"
-/>
+/> -->
+
 
 
 <!-- Await Response -->
