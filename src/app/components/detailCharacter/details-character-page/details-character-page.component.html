@@ -4,6 +4,7 @@
     <div *ngIf="caharacter"
       (mouseenter)="onMouseEnter($event)"
       (mouseleave)="onMouseLeave($event)"
+      (click)="onMouseEnter($event)"
       class="grid grid-flow-row lg:grid-cols-2 rounded-lg lg:grid-flow-col lg:gap-4 justify-stretch mt-20 shadow-malachite-400 dark:shadow-blue-ribbon-400 hover:shadow-md overflow-hidden blur-sm dark:opacity-10 hover:blur-0 hover:opacity-100 hover:dark:opacity-100 transition-all duration-300"
     >
       <!-- Image -->
@@ -36,12 +37,12 @@
   >
     <!-- Status -->
     <select name="" id=""
-      class="w-2/3 h-auto grid text-center rounded border border-malachite-600 bg-transparent dark:border-blue-ribbon-800  text-malachite-700 dark:text-blue-ribbon-800"
+      class=" w-1/2 lg:w-2/3 h-auto grid text-center rounded border border-malachite-600 bg-transparent dark:border-blue-ribbon-800  text-malachite-700 dark:text-blue-ribbon-800"
       [(ngModel)]="selectedStatus"
       (change)="generalFilter()"
       *ngIf="status"
     >
-      <option class="dark:bg-slate-900" value="" selected>-- Status --</option>
+      <option class="dark:bg-slate-900 w-1/2" value="" selected>-- Status --</option>
       <option class="dark:bg-slate-900"
         *ngFor="let value of status"
         value="{{value}}">
@@ -50,7 +51,7 @@
     </select>
     <!-- Gender -->
     <select name="" id=""
-      class="w-2/3 h-auto grid text-center rounded border border-malachite-600 bg-transparent dark:border-blue-ribbon-800  text-malachite-700 dark:text-blue-ribbon-800"
+      class="w-1/2 lg:w-2/3 h-auto grid text-center rounded border border-malachite-600 bg-transparent dark:border-blue-ribbon-800  text-malachite-700 dark:text-blue-ribbon-800"
       [(ngModel)]="selectedGender" (change)="generalFilter()"
       *ngIf="gender"
     >
@@ -66,7 +67,7 @@
 
     <!-- Species -->
     <select name="" id=""
-      class="w-2/3 h-auto grid text-center rounded border border-malachite-600 bg-transparent dark:border-blue-ribbon-800  text-malachite-700 dark:text-blue-ribbon-800"
+      class="w-1/2 lg:w-2/3 h-auto grid text-center rounded border border-malachite-600 bg-transparent dark:border-blue-ribbon-800  text-malachite-700 dark:text-blue-ribbon-800"
       [(ngModel)]="selectedSpecies" (change)="generalFilter()"
       *ngIf="species"
     >
