@@ -28,7 +28,6 @@
       [siteRenderNavbar]="true"
       (modeTheme)="renderImage($event)"
     />
-
   </div>
 
 </nav>
@@ -38,17 +37,18 @@
   <input type="checkbox" name="hamburger" id="hamburger" class="peer" hidden>
   <label for="hamburger"
     class="peer-checked:hamburger py-4 block  z-20 w-fit cursor-pointer lg:hidden transition-all rounded h-4 absolute right-6">
-    <div class="mb-2 h-[2px] md:w-6 w-5  bg-black dark:bg-blue-ribbon-500 transition"></div>
-    <div class="h-[3px] md:w-6 w-5 bg-black dark:bg-blue-ribbon-500 transition"></div>
+    <div class="mb-2 h-[2px] md:w-6 w-5  bg-malachite-600 dark:bg-blue-ribbon-500 transition"></div>
+    <div class="h-[3px] md:w-6 w-5 bg-malachite-600 dark:bg-blue-ribbon-500 transition"></div>
   </label>
 
   <!-- Body links -->
   <div
     #elementMenu
     class="peer-checked:card-gradiente peer-checked:overflow-auto dark:bg-transparent dark:lg:bg-transparent w-3/5 shadow-lg transition flex flex-col justify-between px-12
-        fixed inset-0 translate-x-[-100%] peer-checked:translate-x-0 lg:w-auto lg:static lg:shadow-none lg:translate-x-0 lg:px-0 lg:flex-row z-40 lg:bg-transparent lg:blur-none">
+        fixed inset-0 translate-y-[-100%] peer-checked:translate-y-0 lg:w-auto lg:static lg:shadow-none lg:translate-y-0 lg:px-0 lg:flex-row z-40 lg:bg-transparent lg:blur-none">
     <!-- Enlaces -->
-    <ul class="px-6 py-36 flex flex-col gap-10 text-center text-lg  lg:flex-row lg:p-4">
+    <ul class="px-6 py-20 flex flex-col gap-2 lg:gap-10 text-center text-lg  lg:flex-row lg:p-4">
+      <app-search [search]="false" />
       <li
         (click)="routerGo(item)"
         class="cursor-pointer  text-sm md:text-lg hover:text-malachite-400 hover:underline hover:decoration hover:decoration-malachite-700 hover:dark:decoration-blue-ribbon-700 hover:underline-offset-4 dark:hover:text-blue-ribbon-400 dark:transition-all grid place-items-center tracking-wide py-2 px-4 font-semibold transition duration-200
@@ -71,14 +71,13 @@
       <li>
         <app-search [search]="true" />
       </li>
-      <li>
+      <li class="">
         <app-theme-mode
           [siteRenderNavbar]="false"
           (modeTheme)="renderImage($event)"
         />
       </li>
     </ul>
-    <app-search [search]="false" />
 
   </div>
 </ng-template>
