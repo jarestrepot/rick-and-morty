@@ -30,7 +30,10 @@
   </div>
 
   <h3 class="titleDegrant font-semibold text-xl mt-10 lg:mt-20">Filter</h3>
-  <div class="w-full h-auto mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 place-items-center">
+  <div
+    class="w-full h-auto mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 place-items-center"
+    *ngIf="findCharacters.length === 0"
+  >
     <!-- Status -->
     <select name="" id=""
       class="w-2/3 h-auto grid text-center rounded border border-malachite-600 bg-transparent dark:border-blue-ribbon-800  text-malachite-700 dark:text-blue-ribbon-800"
@@ -90,11 +93,7 @@
   [charactersRickAndMorty]="findCharacters"
   class="w-full my-10 grid place-items-center grid-cols-1 gap-6 md:grid-cols-2 "
 />
-<!-- <app-search-card
-  *ngIf="findCharacters"
-  [findCharacters]="findCharacters"
-  class="my-30 w-full h-auto p-4 grid grid-cols-1 md:grid-cols-2 gap-12 place-items-center"
-/> -->
+
 
 
 
