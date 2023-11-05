@@ -86,18 +86,16 @@
 <!-- Component Card -->
 <h2 *ngIf="locationRelatedCharacter.length > 0" class="titleDegrant text-center text-xl md:text-2xl font-bold">Related characters due to their location</h2>
 <app-character-card
-  *ngIf="locationRelatedCharacter && findCharacters.length === 0"
+  *ngIf="locationRelatedCharacter && search().length === 0"
   [charactersRickAndMorty]="locationRelatedCharacter"
   class="w-full my-10 grid place-items-center grid-cols-1 gap-6 md:grid-cols-2 "
 />
+
 <!-- Serach Component -->
 <app-character-card *ngIf="findCharacters"
   [charactersRickAndMorty]="findCharacters"
   class="w-full my-10 grid place-items-center grid-cols-1 gap-6 md:grid-cols-2 "
 />
-
-
-
 
 <!-- Await Response -->
 <ng-template #awaitResponse>

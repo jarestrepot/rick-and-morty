@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, inject, SimpleChanges, OnChanges,  Renderer2, ViewChild, ElementRef } from '@angular/core';
+import { Component, Input, OnInit, inject, SimpleChanges, OnChanges,  Renderer2, ViewChild, ElementRef, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CharactersService } from '../../main/services/characters-controller.service';
 import { characterDetail } from '@core/models/detailCharacter';
@@ -37,11 +37,17 @@ export class DetailsCharacterPageComponent implements OnInit, OnChanges {
   status: string[] = [];
   gender: string[] = [];
   species: string[] = [];
+  search = signal('')
 
   ngOnInit(): void {
     this.id ? this.characterDetails(this.id) : this.redirecMain();
     this.searchServiceKeypress.keypress.subscribe({
       next: (key: string) =>{
+        if(key === 'false'){
+          this.search.set('');
+          return;
+        }
+        this.search.set(key)
         this.findCharacters = this.locationRelatedCharacter.filter((character: Result) => {
           return character.name.toLowerCase().includes(key.toLowerCase())
         });
