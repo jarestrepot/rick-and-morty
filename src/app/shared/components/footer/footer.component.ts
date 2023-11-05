@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { footerInterfaces } from '@core/models/footer';
 
 @Component({
   selector: 'app-footer',
@@ -9,11 +8,6 @@ import { footerInterfaces } from '@core/models/footer';
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss']
 })
-export class FooterComponent implements OnInit {
+export class FooterComponent {
 
-  icons: footerInterfaces = { defaultOptions:[] };
-
-  ngOnInit(): void {
-    
-  }
 }
