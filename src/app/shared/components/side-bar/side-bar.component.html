@@ -1,7 +1,7 @@
 <nav
   class="z-20 lg:navSuperior top-0 dark:lg:navSuperior fixed w-11/12 m-0 border-b border-malachite-500 2xl:shadow-none dark:border-t-blue-ribbon-50 flex justify-center items-center dark:border-blue-ribbon-500"
 >
-  <div class="p-4 md:p-6 container  flex justify-between items-center gap-5 xl:gap-8">
+  <div class="p-4 md:p-3 container  flex justify-between items-center gap-5 xl:gap-6">
     <div class="flex flex-col items-center justify-between">
       <figure class="z-50 w-full sm:w-auto">
         <a [routerLink]="['/']" class="flex items-center">
@@ -47,7 +47,7 @@
     class="peer-checked:card-gradiente peer-checked:overflow-auto dark:bg-transparent dark:lg:bg-transparent w-3/5 shadow-lg transition flex flex-col justify-between px-12
         fixed inset-0 translate-y-[-100%] peer-checked:translate-y-0 lg:w-auto lg:static lg:shadow-none lg:translate-y-0 lg:px-0 lg:flex-row z-40 lg:bg-transparent lg:blur-none">
     <!-- Enlaces -->
-    <ul class="py-20 flex flex-col gap-2 lg:gap-10 text-center text-lg  lg:flex-row lg:p-4">
+    <ul class="py-20 flex flex-col gap-2 text-center text-lg  lg:flex-row lg:p-4">
       <app-search  [search]="false" />
       <li
         (click)="routerGo(item)"
