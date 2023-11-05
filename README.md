@@ -6,15 +6,28 @@ Web that allows you to search for your favorite **characters** and also to see t
 
 ## Development server
 👣 **Steps**
-  1. To clone the repository you only have to use this command  `git clone git@github.com:jarestrepot/rick-and-morty.git` o `git clone https://github.com/jarestrepot/rick-and-morty.git`<hr>
-  2. Access the folder `cd rick-and-morty` <hr>
-  3. Instala las depenecias que necesita la web para funcionar correctamente `npm install`<hr>
-  4. Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.<hr>
+  - To clone the repository you only have to use this command
+    ```bash
+      git clone git@github.com:jarestrepot/rick-and-morty.git
+    ```
+   If the first clone does not work, try this command `git clone https://github.com/jarestrepot/rick-and-morty.git` <hr>
+  - Access the folder `cd rick-and-morty` <hr>
+  - Instala las depenecias que necesita la web para funcionar correctamente
+     ```bash
+        npm install
+     ```
+    <hr>
+  - Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.<hr>
 
 ## Code scaffolding
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-##Views 🖼️
+## Demo ⬇️
+
+<a href="https://readme.so/es/editor">Click demo</a>
+
+
+## Views 🖼️
 | Desktop or laptop | Tablet | Movil |
 |----------|----------|----------|
 |  ![ligth-desktop](https://github.com/jarestrepot/rick-and-morty/assets/102868557/e2981af2-a9b4-429b-8d51-a1e9cc01aaa1)  | ![table-dark](https://github.com/jarestrepot/rick-and-morty/assets/102868557/b980249b-62bf-4424-b73f-d577b23ae3bf)  | ![movil-dark](https://github.com/jarestrepot/rick-and-morty/assets/102868557/ff5a4d50-4027-4458-b357-c2cb109d9a09)   |
