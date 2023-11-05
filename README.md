@@ -24,7 +24,7 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 ## Demo ⬇️
 
-<a href="https://readme.so/es/editor">Click demo</a>
+[Click demo](https://rickwebsite-hacketon.netlify.app/)
 
 
 ## Views 🖼️
