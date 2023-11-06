@@ -43,6 +43,7 @@ export class ChaptersAllComponent implements OnInit {
 
   seasonSearch(number:string){
     this.season = [];
+    this.characteresFind = [];
     this.searCharacter.searchAllCharacterEpisode$(number).subscribe(
       {
         next: (response: seasonInterface) => {
