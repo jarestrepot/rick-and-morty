@@ -10,7 +10,7 @@ Web that allows you to search for your favorite **characters** and also to see t
     ```bash
       git clone git@github.com:jarestrepot/rick-and-morty.git
     ```
-   If the first clone does not work, try this command `git clone https://github.com/jarestrepot/rick-and-morty.git` <hr>
+     If the first clone does not work, try this command `git clone https://github.com/jarestrepot/rick-and-morty.git` <hr>
   - Access the folder `cd rick-and-morty` <hr>
   - Instala las depenecias que necesita la web para funcionar correctamente
      ```bash
@@ -25,6 +25,7 @@ Run `ng generate component component-name` to generate a new component. You can 
 ## Demo ⬇️
 
 [Click demo](https://rickwebsite-hacketon.netlify.app/)
+
 
 
 ## Views 🖼️
