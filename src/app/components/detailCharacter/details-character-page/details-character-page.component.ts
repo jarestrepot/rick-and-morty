@@ -77,7 +77,6 @@ export class DetailsCharacterPageComponent implements OnInit, OnChanges {
         (this.selectedSpecies.length === 0 || character.species === this.selectedSpecies)
       );
     });
-    console.log(valueTmp);
     this.locationRelatedCharacter = valueTmp;
     this.setAllValues(valueTmp);
   }
