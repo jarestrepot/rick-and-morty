@@ -80,7 +80,7 @@ Run `ng generate component component-name` to generate a new component. You can 
 **Light Mode**
 
 `
-  'de-york': {
+  'malachite': {
           '50': 'oklch(97.34% 0.01 152.61)',
           '100': 'oklch(93.74% 0.04 151.39)',
           '200': 'oklch(87.60% 0.06 153.39)',
